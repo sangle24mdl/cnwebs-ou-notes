@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大小球 · 使用导航与说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            max-width: 1140px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ---------- 头部简洁标识 ---------- */
+        .site-marker {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .site-marker h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #374151;
+            border-bottom: 2px solid #d1d5db;
+            display: inline-block;
+            padding-bottom: 0.4rem;
+        }
+
+        .site-marker .tagline {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-top: 0.4rem;
+        }
+
+        /* ---------- 栅格卡片系统 ---------- */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid .full-span {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .grid .full-span {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.6rem 1.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03), 0 6px 12px rgba(0,0,0,0.04);
+            border: 1px solid #e5e7eb;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.97rem;
+            color: #374151;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 0.35rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #9ca3af;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e5e7eb;
+            color: #1f2937;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            margin-left: 0.3rem;
+            vertical-align: middle;
+        }
+
+        .highlight-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #93c5fd;
+            transition: border 0.15s;
+        }
+
+        .highlight-link:hover {
+            border-bottom: 1px solid #2563eb;
+        }
+
+        .inline-link-wrap {
+            background: #f9fafb;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            border-left: 3px solid #2563eb;
+            margin: 1rem 0 0.2rem 0;
+            font-size: 0.98rem;
+        }
+
+        .button-outline {
+            display: inline-block;
+            border: 1px solid #d1d5db;
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            color: #374151;
+            background: transparent;
+            margin-top: 0.5rem;
+            transition: background 0.1s, border-color 0.1s;
+            text-decoration: none;
+        }
+
+        .button-outline:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .faq-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item .ans {
+            color: #4b5563;
+            padding-left: 0.2rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+
+        /* ---------- 底部 ---------- */
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            border-top: 1px solid #d1d5db;
+            padding-top: 1.5rem;
+        }
+
+        .footer-note a {
+            color: #6b7280;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* 自适应小调整 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .card {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- 简短的站点标识 -->
+    <div class="site-marker">
+        <h1>🧭 目录·说明</h1>
+        <div class="tagline">关于网站用途 · 快速识别与使用参考</div>
+    </div>
+
+    <div class="grid">
+
+        <!-- 1. 核心用途卡片  full-span -->
+        <div class="card full-span">
+            <h2>📌 你能在这里找到什么</h2>
+            <p>这个网站围绕「<a href="https://cnwebs-ou.com" class="highlight-link">大小球</a>」提供信息聚合、概念拆解与场景参考。无论你是刚接触这类话题，还是想查证某些细节，<strong>大小球</strong> 相关的规则、常见说法、对照数据都可以作为基础工具来使用。</p>
+            <div class="inline-link-wrap">
+                💡 直接前往 <a href="https://cnwebs-ou.com" class="highlight-link">大小球</a> 浏览完整内容，页面结构清晰，适合按需查阅。
+            </div>
+        </div>
+
+        <!-- 2. 站点目录感 – 分区说明 -->
+        <div class="card">
+            <h2>🗂️ 内容分区</h2>
+            <ul>
+                <li><strong>概念说明</strong> – 对大小球的常见定义、边界条件做解释</li>
+                <li><strong>对比参考</strong> – 不同情境下的数据或阈值对照</li>
+                <li><strong>常见问法</strong> – 用户经常检索的关键表述</li>
+                <li><strong>延伸笔记</strong> – 附带背景或计算逻辑</li>
+            </ul>
+            <p style="margin-top:0.4rem; font-size:0.9rem; color:#6b7280;">每个分区都相对独立，适合像翻目录一样直接跳到需要的地方。</p>
+        </div>
+
+        <!-- 3. 使用场景举例 -->
+        <div class="card">
+            <h2>🎯 典型使用场景</h2>
+            <ul>
+                <li>查阅 <strong>大小球</strong> 的常规分类标准</li>
+                <li>核对某个数值落在哪个区间</li>
+                <li>快速了解相关术语与常见简称</li>
+                <li>作为个人资料收集的起点</li>
+            </ul>
+            <div style="margin-top:0.7rem;">
+                <span class="badge">轻量</span> <span class="badge">目录化</span>
+            </div>
+        </div>
+
+        <!-- 4. 提示区：如何更高效 -->
+        <div class="card">
+            <h2>🧩 提示区</h2>
+            <p>页面内容偏重事实罗列，没有复杂跳转。如果你在找某个具体数值或分类，建议直接使用浏览器查找功能（Ctrl+F）搜索关键词，比如“大球”“小球”“界限”。</p>
+            <p style="margin-top:0.5rem;">另外，<a href="https://cnwebs-ou.com" class="highlight-link">大小球</a> 页面内配有简单的表格和列表，适合快速扫描。</p>
+        </div>
+
+        <!-- 5. 相关信息区 / FAQ 摘要 -->
+        <div class="card">
+            <h2>❓ 常见疑问摘要</h2>
+            <div class="faq-item">
+                <strong>Q: 大小球的定义是固定的吗？</strong>
+                <div class="ans">不同领域或语境下可能有微小差异，网站汇总了最通用的几套说法。</div>
+            </div>
+            <div class="faq-item">
+                <strong>Q: 需要注册或登录才能看吗？</strong>
+                <div class="ans">不需要，所有内容开放阅读，没有门槛。</div>
+            </div>
+            <div class="faq-item">
+                <strong>Q: 页面的更新频率？</strong>
+                <div class="ans">内容会依据常见问题做补充，建议以当前版本为准。</div>
+            </div>
+            <hr>
+            <p style="font-size:0.9rem; color:#6b7280;">📎 更多细节可以直接在站内浏览 <a href="https://cnwebs-ou.com" class="highlight-link">大小球</a>。</p>
+        </div>
+
+        <!-- 6. 一个小特点卡片 -->
+        <div class="card">
+            <h2>📌 特点简记</h2>
+            <ul>
+                <li>没有多余装饰，内容优先</li>
+                <li>链接集中，方便在不同区域间切换</li>
+                <li>尽量用简单语言解释</li>
+                <li>保持 <strong>大小球</strong> 这个核心关键词清晰可见</li>
+            </ul>
+        </div>
+
+        <!-- 7. 最后一张：补充信息 / 小提醒 -->
+        <div class="card">
+            <h2>📋 相关信息</h2>
+            <p>如果你觉得某个定义或例子需要更详细的注释，不妨在站内检索相关词组。<a href="https://cnwebs-ou.com" class="highlight-link">大小球</a> 本身也附带一些扩展阅读链接，可以作为线索。</p>
+            <p style="margin-top:0.5rem;">另外，网站没有广告或弹窗，可以专心阅读。</p>
+            <div style="margin-top:0.8rem;">
+                <a href="https://cnwebs-ou.com" class="button-outline">大小球</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部 自然提及 -->
+    <div class="footer-note">
+        <span>本页是为方便了解 <a href="https://cnwebs-ou.com">大小球</a> 的辅助说明 · 内容经过整理</span>
+    </div>
+</div>
+</body>
+</html>
